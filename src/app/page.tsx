@@ -4,10 +4,11 @@ import { Carousel } from "@/components/Carousel";
 import { useActionDetector } from "@/hooks/useActionDetector";
 
 export default function Home() {
-  const { action: direction, arrows, clearArrows } = useActionDetector();
+  const { realAction, arrows, clearArrows, isReverse, toggleReverse } =
+    useActionDetector();
 
   const getMessage = () => {
-    switch (direction) {
+    switch (realAction) {
       case "up":
         return "arriba";
       case "down":
@@ -30,7 +31,7 @@ export default function Home() {
         {/* Main Action Display */}
         <div className="flex flex-col items-center gap-4">
           <div className="scale-150 p-4">
-            <Arrow direction={direction} />
+            <Arrow direction={realAction} />
           </div>
           <p className="text-2xl font-bold uppercase tracking-widest opacity-80">
             {getMessage()}
@@ -38,12 +39,24 @@ export default function Home() {
         </div>
 
         {/* Controls */}
-        <button
-          className="px-6 py-2 bg-foreground text-background rounded-full font-medium hover:opacity-90 transition-opacity active:scale-95"
-          onClick={clearArrows}
-        >
-          Limpiar Historial
-        </button>
+        <div className="flex gap-4 items-center">
+          <button
+            className={`px-6 py-2 rounded-full font-medium transition-all active:scale-95 border-2 ${
+              isReverse
+                ? "bg-red-500 text-white border-red-500"
+                : "bg-transparent text-foreground border-foreground hover:bg-foreground/5"
+            }`}
+            onClick={toggleReverse}
+          >
+            Modo Inverso: {isReverse ? "ON" : "OFF"}
+          </button>
+          <button
+            className="px-6 py-2 bg-foreground text-background rounded-full font-medium hover:opacity-90 transition-opacity active:scale-95 border-2 border-transparent"
+            onClick={clearArrows}
+          >
+            Limpiar Historial
+          </button>
+        </div>
       </div>
     </div>
   );
