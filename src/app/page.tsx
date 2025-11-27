@@ -1,17 +1,6 @@
 "use client";
+import { Arrow } from "@/components/Arrow";
 import { useEffect, useState } from "react";
-import "./arrow.css";
-
-type ArrowDirections = "up" | "down" | "left" | "right";
-
-const Arrow = ({ direction }: { direction: ArrowDirections }) => {
-  return (
-    <div className={`arrow-container ${direction}`}>
-      <header className="arrowhead"></header>
-      <main className="arrowbody"></main>
-    </div>
-  );
-};
 
 const DIRECTIONS = {
   UP: "up",

@@ -31,11 +31,11 @@
   transform: rotate(0deg);
 }
 
-.arrow-container.left {
+.arrow-container.right {
   transform: rotate(90deg);
 }
 
-.arrow-container.right {
+.arrow-container.left {
   transform: rotate(-90deg);
 }
 
