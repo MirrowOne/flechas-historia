@@ -1,21 +1,25 @@
 .arrow-container {
+  /* configuracion de contenedor */
+  --arrow-container-size: 100px;
+  --arrow-container-padding: 5px;
+  --arrow-container-radius: 15px;
+  --arrow-container-background-color: #3d3d3d44;
   /* Variables de la flecha */
   --arrow-gap: 5px;
-  --arrow-container-width: 30px;
   --arrow-width: 5px;
   --arrow-height: 80px;
   --arrow-color: #fff;
-  /* --arrow-direction: 180deg; */
   --head-width: 30px;
   --head-height: 40px;
   --head-radius: 15px;
   --body-width: 5px;
 
-  width: var(--arrow-container-width);
-  height: var(--arrow-height);
-  background-color: transparent;
+  width: var(--arrow-container-size);
+  height: var(--arrow-container-size);
+  padding: var(--arrow-container-padding);
+  background-color: var(--arrow-container-background-color);
+  border-radius: var(--arrow-container-radius);
   gap: var(--arrow-gap);
-  /* transform: rotate(var(--arrow-direction)); */
   /* centrado de la flecha */
   display: flex;
   flex-direction: column;
