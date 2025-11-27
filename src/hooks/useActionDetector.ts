@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Arrow } from "@/components/Arrow";
 
 const DIRECTIONS = {
   UP: "up",
@@ -8,14 +9,17 @@ const DIRECTIONS = {
 } as const;
 
 export function useActionDetector() {
+  const [arrows, setArrows] = useState<ArrowDirections[] | null>(null);
   const [action, setAction] = useState<ArrowDirections>("down");
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const key = event.key;
       const action = processKey(key);
+      console.log("action", action);
       if (!action) return;
       setAction(action);
+      catchArrow(action);
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -25,7 +29,17 @@ export function useActionDetector() {
     };
   }, []);
 
-  return { action };
+  const catchArrow = (arrow: ArrowDirections) => {
+    if (!arrow) return;
+
+    setArrows((prev) => [...(prev ?? []), arrow]);
+  };
+
+  const clearArrows = () => {
+    setArrows(null);
+  };
+
+  return { action, arrows, clearArrows };
 }
 
 const processKey = (key: string): ArrowDirections => {
